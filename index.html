@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <div id="gif-view">
+            <div class="col-md">
+                <div id="gif-buttons">
 
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
+
+            <div class="col md">
+                <div class="row">
+                    <div class="col"></div>
+
+
+                </div>
 
             </div>
             <div class="col-4">
-                    <form>
-                            <div class="form-group">
-                              <label for="Search-Input">Add an Item to the list</label>
-                              <input type="text" class="form-control" id="Search-Input" aria-describedby="emailHelp" placeholder="Search Term">
-                            </div>
-                            <button type="submit" class="btn btn-info" id="add-gif">Submit</button>
-                          </form>
+                <form>
+                    <div class="form-group">
+                        <label for="Search-Input">Add an Item to the list</label>
+                        <input type="text" class="form-control" id="Search-Input" aria-describedby="emailHelp"
+                            placeholder="Search Term">
+                    </div>
+                    <button type="submit" id="add-gif">Submit</button>
+                </form>
             </div>
         </div>
 
@@ -37,4 +47,5 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

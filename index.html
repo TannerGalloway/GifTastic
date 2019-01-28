@@ -22,23 +22,26 @@
         </div>
         <div class="row">
 
-            <div class="col md">
-                <div class="row">
-                    <div class="col"></div>
-
-
-                </div>
+            <div class="col">
 
             </div>
             <div class="col-4">
                 <form>
                     <div class="form-group">
                         <label for="Search-Input">Add an Item to the list</label>
-                        <input type="text" class="form-control" id="Search-Input" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" id="Search-Input" aria-describedby="searchHelp"
                             placeholder="Search Term">
                     </div>
                     <button type="submit" id="add-gif">Submit</button>
-                </form>
+                    <button id="addMoreGifs">Add 10 Gifs</br></button>
+                    <div class="form-group form-check">
+                        <label for="displayRating">Select what attribute below you would like to see about the
+                            generated Gifs.</label></br>
+                        <input type="checkbox" class="form-check-input" id="gifTitle">
+                        <label class="form-check-label" for="displayTitle">Title</label></br>
+                        <input type="checkbox" class="form-check-input" id="gifRating">
+                        <label class="form-check-label" for="displayRating">Rating</label>
+                    </div>
             </div>
         </div>
 

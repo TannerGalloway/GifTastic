@@ -6,7 +6,8 @@ $(document).ready(function()
     var gifData;
     var addMoreClicked = false;
     var limit = 10;
-    var paragraph;
+    var paragraphRating;
+    var paragraphTitle;
     var currentSearch;
     var gifDiv;
 
@@ -29,6 +30,7 @@ $(document).ready(function()
             method: "GET"
         }).then(function(responce)
         {
+            console.log(responce);
             gifData = responce;
             //empty gif div to not have duplicates
             $(".gifs").empty();
@@ -37,22 +39,27 @@ $(document).ready(function()
             for(i = 0; i < responce.data.length; i++)
             {
                 //get the rating of the gif and the still image of the gif
-                var rating = responce.data[i].rating;
+                var gifRating = responce.data[i].rating;
                 var stillGif = responce.data[i].images.original_still.url;
+                var gifTitle = responce.data[i].title;
             
                 //create a div for the p tag and the image add the div to the body
                 gifDiv = $("<div>");
-                // gifDiv.attr("id", i);
-                paragraph = $("<p>");
+                paragraphRating = $("<p>");
+                paragraphTitle = $("<p>");
                 var gif = $("<img>");
                 gifDiv.addClass("gifs");
-                paragraph.attr("id", i);
-                $(paragraph).text("");
+                paragraphTitle.addClass("hideTitle");
+                paragraphRating.addClass("hideRating");
+                $(paragraphTitle).text(gifTitle);
+                $(paragraphRating).text("Rating: " + gifRating);
                 gif.attr("src", stillGif);
                 gif.attr("value", 0);
+                gif.attr("id", i);
                 $(".col").append(gifDiv);
                 $(gifDiv).append(gif);
-                $(gifDiv).append(paragraph);
+                $(gifDiv).append(paragraphTitle);
+                $(gifDiv).append(paragraphRating);
 
             }   
         });
@@ -82,20 +89,25 @@ $(document).ready(function()
                     //get the rating of the gif and the still image of the gif
                     var rating = responce.data[i].rating;
                     var stillGif = responce.data[i].images.original_still.url;
+                    var title = responce.data[i].title;
                 
                     //create a div for the p tag and the image add the div to the body
                     gifDiv = $("<div>");
-                    // gifDiv.attr("id", i);
-                    paragraph = $("<p>");
+                    paragraphRating = $("<p>");
+                    paragraphTitle = $("<p>");
                     var gif = $("<img>");
                     gifDiv.addClass("gifs");
-                    paragraph.attr("id", i);
-                    $(paragraph).text("");
+                    paragraphTitle.addClass("hideTitle");
+                    paragraphRating.addClass("hideRating");
+                    $(paragraphTitle).text(title);
+                    $(paragraphRating).text("Rating: " + rating);
                     gif.attr("src", stillGif);
                     gif.attr("value", 0);
+                    gif.attr("id", i);
                     $(".col").append(gifDiv);
                     $(gifDiv).append(gif);
-                    $(gifDiv).append(paragraph);
+                    $(gifDiv).append(paragraphRating);
+                    $(gifDiv).append(paragraphTitle);
     
                 }   
             });
@@ -186,30 +198,31 @@ $("#addMoreGifs").on("click", function(event)
     showgifs();
 });
 
-$(document).on("click", ".form-check-input", function(event)
+$(document).on("click", ".form-check-input", function()
 {
-    //check if checkbox is clicked
+    // //get checkbox clicked
+    // var boxClicked = event.target;
+    // //get id of checkbox clicked
+    // var boxId = boxClicked.id;
+    
     if($("#gifRating").is(":checked"))
     {
-        //loop through the array
-        for(i = 0; i < gifData.data.length; i++)
-        {
-            //get the gif ratting
-            var gifRating = gifData.data[i].rating;
-            
-            //put rating to text
-            $("#" + i).text("Rating: " + gifRating);    
-        }
+        $(".hideRating").attr("class", "showRating");
     }
     else
     {
-        //unclicked remove text
-        for(i = 0; i < gifData.data.length; i++)
-        {
-            $("#" + i).text("");    
-        }   
-        
+        $(".showRating").attr("class", "hideRating");
     }
+
+    if($("#gifTitle").is(":checked"))
+    {
+        $(".hideTitle").attr("class", "showTitle");
+    }
+    else
+    {
+        $(".showTitle").attr("class", "hideTitle");
+    }
+
 
 });
 

@@ -23,6 +23,27 @@ p
     display: inline-block;
 }
 
+.showRating
+{
+ display: block;   
+}
+
+.hideRating
+{
+    display: none;
+}
+
+.showTitle
+{
+ display: block;   
+}
+
+.hideTitle
+{
+    display: none;
+}
+
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) 
 {

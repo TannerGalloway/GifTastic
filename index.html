@@ -19,6 +19,9 @@
 
                 </div>
             </div>
+            <div class="col-sm">
+                <button id="favoritesButton" value="0">Favorites</button>
+            </div>
         </div>
         <div class="row">
 
@@ -26,13 +29,17 @@
 
             </div>
             <div class="col-4">
-                <form>
+                <div id="favorites">
+                    <h5>Favorites</h5>
+                </div>
+
+                <form id="gifControler">
                     <div class="form-group">
                         <label for="Search-Input">Add an Item to the list</label>
                         <input type="text" class="form-control" id="Search-Input" aria-describedby="searchHelp"
                             placeholder="Search Term">
                     </div>
-                    <button type="submit" id="add-gif">Submit</button>
+                    <button type="submit" id="add-gif" disabled="disabled">Submit</button>
                     <button id="addMoreGifs">Add 10 Gifs</br></button>
                     <div class="form-group form-check">
                         <label for="displayRating">Select what attribute below you would like to see about the
@@ -42,7 +49,9 @@
                         <input type="checkbox" class="form-check-input" id="gifRating">
                         <label class="form-check-label" for="displayRating">Rating</label>
                     </div>
-            </div>
+                </form>
+                   
+            </div>  
         </div>
 
     </div>

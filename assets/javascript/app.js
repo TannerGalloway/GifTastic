@@ -10,6 +10,10 @@ $(document).ready(function()
     var paragraphTitle;
     var currentSearch;
     var gifDiv;
+    var emptyTextTimer = setInterval(TextCheck, 500); //timer runs ever half second to  disable button if no search term is made or checkboxes are clicked
+    var searchTerm;
+    var form = document.getElementById("gifControler");
+    var favorites = document.getElementById("favorites");
 
     //show gifs function
     function showgifs()
@@ -166,6 +170,32 @@ function renderButtons()
     }
 }
 
+function TextCheck()
+{
+    //get text from text input form
+    searchTerm = $("#Search-Input").val().trim();
+    
+    //check if search term is empty
+    if(searchTerm == "")
+    {
+        $("#add-gif").attr("disabled", true);
+    }
+    else
+    {
+        $("#add-gif").attr("disabled", false);
+    }
+
+    //check if one of the checkboxes is checked
+    if($("#gifRating").is(":checked") || $("#gifTitle").is(":checked"))
+    {
+        $("#addMoreGifs").attr("disabled", true);
+    }
+    else
+    {
+        $("#addMoreGifs").attr("disabled", false);
+    }
+}
+
 // check for clicks of items that are going to be crated into buttons
 $("#add-gif").on("click", function(event)
 {
@@ -173,16 +203,12 @@ $("#add-gif").on("click", function(event)
     event.preventDefault();
     
     //get text from text input form
-    var searchTerm = $("#Search-Input").val().trim();
+    searchTerm = $("#Search-Input").val().trim();
     
-    //check if text is empty
-    if(searchTerm !== "")
-    {
         // add to array and recall the function to render the buttons
         topics.push(searchTerm);
         $("#Search-Input").val("");
         renderButtons();
-    }
 
 });
 
@@ -200,13 +226,10 @@ $("#addMoreGifs").on("click", function(event)
 
 $(document).on("click", ".form-check-input", function()
 {
-    // //get checkbox clicked
-    // var boxClicked = event.target;
-    // //get id of checkbox clicked
-    // var boxId = boxClicked.id;
-    
+    //check if rating checkbox was clicked
     if($("#gifRating").is(":checked"))
     {
+        //change class
         $(".hideRating").attr("class", "showRating");
     }
     else
@@ -214,8 +237,10 @@ $(document).on("click", ".form-check-input", function()
         $(".showRating").attr("class", "hideRating");
     }
 
+    //check if title check box was clicked
     if($("#gifTitle").is(":checked"))
     {
+        //change class
         $(".hideTitle").attr("class", "showTitle");
     }
     else
@@ -225,6 +250,40 @@ $(document).on("click", ".form-check-input", function()
 
 
 });
+
+//check if favorites button is clicked
+$("#favoritesButton").on("click", hide_showForm);
+
+//hide/show form
+function hide_showForm()
+{
+    if($("#favoritesButton").attr("value") == 0)
+    {
+        form.style.display = "none";
+        $("#favoritesButton").attr("value", 1);
+        hide_showFavorites();
+        $("#favoritesButton").text("Search");
+    }
+    else if($("#favoritesButton").attr("value") == 1)
+    {
+        form.style.display = "block";
+        $("#favoritesButton").attr("value", 0);
+        hide_showFavorites();
+        $("#favoritesButton").text("Favorites");
+    }
+}
+
+function hide_showFavorites()
+{
+    if($("#favoritesButton").attr("value") == 0)
+    {
+        favorites.style.display = "none";
+    }
+    else if($("#favoritesButton").attr("value") == 1)
+    {
+        favorites.style.display = "block";
+    }
+}
 
 renderButtons();
 });

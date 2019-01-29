@@ -8,6 +8,11 @@ button
     margin: 10px;
 }
 
+#favoritesButton
+{
+    float: right;
+}
+
 label
 {
     font-weight: bold;
@@ -39,6 +44,11 @@ p
 }
 
 .hideTitle
+{
+    display: none;
+}
+
+#favorites
 {
     display: none;
 }

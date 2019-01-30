@@ -16,11 +16,11 @@
         <div class="row">
             <div class="col-md">
                 <div id="gif-buttons">
-
                 </div>
             </div>
             <div class="col-sm">
-                <button id="favoritesButton" value="0">Favorites</button>
+                <!-- <button id="favoritesButton" value="0">Favorites</button> -->
+                <button id="movieButton" value="0">MovieInfo</button>
             </div>
         </div>
         <div class="row">
@@ -28,9 +28,9 @@
             <div class="col">
 
             </div>
-            <div class="col-4">
-                <div id="favorites">
-                    <h5>Favorites</h5>
+            <div class="col-5">
+                <div id="movieInfo">
+                    
                 </div>
 
                 <form id="gifControler">
@@ -40,18 +40,20 @@
                             placeholder="Search Term">
                     </div>
                     <button type="submit" id="add-gif" disabled="disabled">Submit</button>
-                    <button id="addMoreGifs">Add 10 Gifs</br></button>
-                    <div class="form-group form-check">
+                    <button id="addMoreGifs">Add 10 Gifs</button>
+                    <div class="form-check">
                         <label for="displayRating">Select what attribute below you would like to see about the
                             generated Gifs.</label></br>
                         <input type="checkbox" class="form-check-input" id="gifTitle">
-                        <label class="form-check-label" for="displayTitle">Title</label></br>
+                        <label class="form-check-label">Title</label></br>
                         <input type="checkbox" class="form-check-input" id="gifRating">
-                        <label class="form-check-label" for="displayRating">Rating</label>
+                        <label class="form-check-label">Rating</label></br>
+                        <input type="checkbox" class="form-check-input" id="movieCheck">
+                        <label class="form-check-label">Movie info (If your search term is a movie)</label>
                     </div>
                 </form>
-                   
-            </div>  
+
+            </div>
         </div>
 
     </div>

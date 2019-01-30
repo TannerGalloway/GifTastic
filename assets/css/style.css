@@ -13,12 +13,17 @@ button
     float: right;
 }
 
+#movieButton
+{
+    float: right;
+}
+
 label
 {
     font-weight: bold;
 }
 
-p
+p h4
 {
     text-align: center;
 }
@@ -48,12 +53,16 @@ p
     display: none;
 }
 
-#favorites
+#movieInfo
 {
     display: none;
 }
 
-
+#moviePoster
+{
+    width: 340px;
+    height: 430px;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) 
 {

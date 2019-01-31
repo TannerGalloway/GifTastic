@@ -8,10 +8,6 @@ button
     margin: 10px;
 }
 
-#favoritesButton
-{
-    float: right;
-}
 
 #movieButton
 {
@@ -23,7 +19,7 @@ label
     font-weight: bold;
 }
 
-p h4
+p
 {
     text-align: center;
 }
@@ -33,22 +29,12 @@ p h4
     display: inline-block;
 }
 
-.showRating
+.showRating, .showTitle
 {
  display: block;   
 }
 
-.hideRating
-{
-    display: none;
-}
-
-.showTitle
-{
- display: block;   
-}
-
-.hideTitle
+.hideRating, .hideTitle
 {
     display: none;
 }
@@ -62,6 +48,12 @@ p h4
 {
     width: 340px;
     height: 430px;
+    
+}
+
+#movieTitle, #movieDate, #movieGenre, #movieRating, #moviePlot
+{
+    text-align: left;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) 

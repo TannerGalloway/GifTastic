@@ -10,11 +10,11 @@ $(document).ready(function()
     var paragraphTitle;
     var currentSearch;
     var gifDiv;
-    setInterval(TextCheck, 500); //timer runs ever half second to  disable button if no search term is made or checkboxes are clicked
+    setInterval(TextCheck, 100); //timer runs ever half second to  disable button if no search term is made or checkboxes are clicked
     var searchTerm;
     var form = document.getElementById("gifControler");
-    // var favorites = document.getElementById("favorites");
-    // var favSelected = false;
+
+
 
     //show gifs function
     function showgifs()
@@ -35,7 +35,6 @@ $(document).ready(function()
             method: "GET"
         }).then(function(responce)
         {
-            console.log(responce);
             gifData = responce;
             //empty gif div to not have duplicates
             $(".gifs").empty();
@@ -51,16 +50,6 @@ $(document).ready(function()
                 //create a div for the p tag and the image add the div to the body
                 gifDiv = $("<div>").addClass("gifs");
                 
-                //create a check box
-                var checkoxDivFav = $("<div>").addClass("form-check"); 
-                var checkboxFav = $("<input>").addClass("form-check-input");
-                checkboxFav.attr("type", "checkbox");
-                checkboxFav.attr("id", "favCheckbox_" + i);
-                
-                //add label to check box
-                var favlabel = $("<label>").addClass("form-check-label");
-                favlabel.attr("for", "favCheckbox_" + i);
-                favlabel.text("Favorite");
 
                 //create paragraph below image
                 paragraphRating = $("<p>").addClass("hideRating");
@@ -79,15 +68,16 @@ $(document).ready(function()
                 //display to screen/append to the html 
                 $(".col").append(gifDiv);
                 $(gifDiv).append(gif);
-                $(gifDiv).append(checkoxDivFav);
-                $(checkoxDivFav).append(checkboxFav);
-                $(checkoxDivFav).append(favlabel);
                 $(gifDiv).append(paragraphTitle);
                 $(gifDiv).append(paragraphRating);
                 
 
             }   
         });
+        if($("#movieCheck").is(":checked"))
+        {
+            movieDisplay();
+        }
     }
     else
     {
@@ -117,17 +107,6 @@ $(document).ready(function()
                     //create a div for the p tag and the image add the div to the body
                     gifDiv = $("<div>").addClass("gifs");
                 
-                    //create a check box
-                    var checkoxDivFav = $("<div>").addClass("form-check");
-                    var checkboxFav = $("<input>").addClass("form-check-input");
-                    checkboxFav.attr("type", "checkbox");
-                    checkboxFav.attr("id", "box" + i);
-                    checkboxFav.attr("id", "favCheckbox_" + i);
-                
-                    //add label to check box
-                    var favlabel = $("<label>").addClass("form-check-label");
-                    favlabel.attr("for", "favCheckbox_" + i);
-                    favlabel.text("Favorite");
 
                     //create paragraph below image
                     paragraphRating = $("<p>").addClass("hideRating");
@@ -146,15 +125,16 @@ $(document).ready(function()
                     //display to screen/appedn to the html 
                     $(".col").append(gifDiv);
                     $(gifDiv).append(gif);
-                    $(gifDiv).append(checkoxDivFav);
-                    $(checkoxDivFav).append(checkboxFav);
-                    $(checkoxDivFav).append(favlabel);
                     $(gifDiv).append(paragraphTitle);
                     $(gifDiv).append(paragraphRating);
     
                 }   
             });
         addMoreClicked = false;
+        if($("#movieCheck").is(":checked"))
+        {
+            movieDisplay();
+        }
     }
 }
 
@@ -202,7 +182,7 @@ function renderButtons()
     for(i = 0; i < topics.length; i++)
     {
         var gifButton = $("<button>");
-        gifButton.addClass("gifButton");
+        gifButton.addClass("btn btn-info gifButton");
         gifButton.attr("gif-data", topics[i]);
         gifButton.text(topics[i]);
         $("#gif-buttons").append(gifButton);
@@ -272,7 +252,7 @@ $(document).on("click", ".form-check-input", function()
     {
         //change class
         $(".hideRating").attr("class", "showRating");
-        return;
+        
     }
     else
     {
@@ -285,14 +265,19 @@ $(document).on("click", ".form-check-input", function()
     {
         //change class
         $(".hideTitle").attr("class", "showTitle");
-        return;
+
     }
     else
     {
         $(".showTitle").attr("class", "hideTitle");   
     }
 
-    //if movie checkbox id=s clicked
+    movieDisplay();
+});
+
+function movieDisplay()
+{
+    //if movie checkbox id is clicked
     if($("#movieCheck").is(":checked"))
     {
         //send a query ajax call to omdb api
@@ -302,7 +287,6 @@ $(document).on("click", ".form-check-input", function()
             method: "GET"
         }).then(function(responce)
         {
-            console.log(responce);
             $("#movieInfo").empty();
             var movieTitle = $("<h4>");
             movieTitle.attr("id", "movieTitle");
@@ -340,56 +324,17 @@ $(document).on("click", ".form-check-input", function()
         });
 
     }
-    
-
-    //     //get id of check box that was clicked
-    //     var checkboxId = $(this).attr("id");
-
-    //     //check if the checkbox that was click was a favorite checkbox
-    // for(i = 0; i < gifDiv.data.length; i++)
-    // {
-    //     if(checkboxId == "favCheckbox_" + i && $("#favCheckbox_" + i).is(":checked"))
-    //     {
-    //         favSelected = true;
-    //     }
-    //     else
-    //     {
-    //         favSelected = false;
-    //     }
-    // }
-
-    // if(favSelected)
-    // {
-    // var favGifNum = 0;
-    // //get end of id of checkbox
-    // var boxId = $(this).attr("id").split("_");
-    
-    // //get src of the image associated with the checkbox
-    // var favGifSrc = $("#" + boxId[1]).attr("src");
-
-    // var favGif = $("<img>").addClass("favGifs");
-    // favGif.attr("src", favGifSrc);
-    // favGif.attr("id", "favGif" + favGifNum);
-    // favGifNum++;
-    // $("#favorites").append(favGif);
-    // }
-    // else if(!favSelected)
-    // {
-    //     console.log("hi");
-    // }
-
-
-});
-
-//check if favorites  or movie button is clicked
-// $("#favoritesButton").on("click", hide_showForm);
+}
+//check if movie button is clicked
 $("#movieButton").on("click", hide_showForm);
 
 //hide/show form
 function hide_showForm()
 {
+    
     if($("#movieButton").attr("value") == 0)
     {
+        
         form.style.display = "none";
         $("#movieButton").attr("value", 1);
         hide_showmovie();
@@ -406,6 +351,7 @@ function hide_showForm()
 
 function hide_showmovie()
 {
+    
     if($("#movieButton").attr("value") == 0)
     {
         movieInfo.style.display = "none";
